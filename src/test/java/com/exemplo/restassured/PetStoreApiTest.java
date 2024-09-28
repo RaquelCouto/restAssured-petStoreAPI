@@ -47,6 +47,15 @@ public class PetStoreApiTest {
             .body("quantity", equalTo(newOrder.getQuantity()))
             .body("status", equalTo(newOrder.getStatus()))
             .body("complete", equalTo(newOrder.isComplete()));
+
+
+        //deleting the newPet order as a good practice
+        given()
+        .when()
+            .delete("/store/order/" + newOrder.getId())
+        .then()
+            .assertThat()
+            .statusCode(200);
     }
 
     @Test
@@ -77,6 +86,7 @@ public class PetStoreApiTest {
         .then()
             .log().all()
             .assertThat()
+            .body("status", equalTo("sold"))
             .statusCode(200);
 
         // Clean up: delete the pet as a good test practice
