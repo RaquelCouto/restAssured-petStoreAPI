@@ -66,7 +66,7 @@ public class PetStoreApiTest {
             .statusCode(200);
 
         // Update the pet's status
-        pet.setStatus("available");
+        pet.setStatus("sold");
         petJson = gson.toJson(pet);
 
         given()
